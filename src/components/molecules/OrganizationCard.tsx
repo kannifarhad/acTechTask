@@ -1,14 +1,15 @@
 import { Card, CardHeader, Avatar, CardContent, Typography, Divider, Grid, List, ListItem, Tooltip, TextField, Box  } from "@mui/material"
-import { useMemo } from "react";
+import { memo } from "react";
 import { OrganizationType, OrganizationLisenseInfo } from '../../types';
 import VerticonMenu, { VerticonMenuItemType } from '../atoms/VerticonMenu';
-import { Edit, SubdirectoryArrowRight, Block } from '@mui/icons-material'
+import { Edit, SubdirectoryArrowRight, Block } from '@mui/icons-material';
+
 type OrganizationCardProps = {
     item:OrganizationType
 }
 
-export const OrganizationCard = ({item}:OrganizationCardProps )=>{
-    const menuItems:VerticonMenuItemType[] = useMemo(()=>([
+export const OrganizationCardComponent = ({item}:OrganizationCardProps )=>{
+    const menuItems:VerticonMenuItemType[] = [
         {
             name:'Edit',
             icon :<Edit fontSize="small"  />,
@@ -24,7 +25,7 @@ export const OrganizationCard = ({item}:OrganizationCardProps )=>{
             icon :<Block  fontSize="small"  />,
             onClick:()=> console.log('Delete Organization clicked'),
         }
-    ]),[item.id]);
+    ];
 
     return(
         <Card className="organizationCard">
@@ -66,8 +67,8 @@ const LisenceItemList = ({title, info}:LisenceItemListProps)=>{
                 <ListItem>
                     <Typography variant="body2" className="listTitle">In Use</Typography>
                     <Box className="listAction">
-                        <Tooltip  placement="top" title={`Internal: ${info.inUse.internal} | External ${info.inUse.external}`}>
-                            <Typography variant="body2" className="red">{inUse}</Typography>
+                        <Tooltip placement="top" title={`Internal: ${info.inUse.internal} | External ${info.inUse.external}`}>
+                            <Typography variant="body2" className={inUse > info.assigned ? 'red': 'green'}>{inUse}</Typography>
                         </Tooltip>
                     </Box>
                 </ListItem>
@@ -86,3 +87,5 @@ const LisenceItemList = ({title, info}:LisenceItemListProps)=>{
         </>
     )
 }
+
+export const OrganizationCard = memo(OrganizationCardComponent);

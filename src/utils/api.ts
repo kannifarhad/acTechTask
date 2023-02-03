@@ -12,15 +12,15 @@ export const createOrganization = (): OrganizationType=>{
         image:faker.image.abstract(100, 100),
         tracking:{
             inUse: {
-                internal: faker.datatype.number({ min:500, max: 600 }),
-                external: faker.datatype.number({ min:500, max: 600 }),
+                internal: faker.datatype.number({ min:600, max: 800 }),
+                external: faker.datatype.number({ min:600, max: 800 }),
             },
-            assigned:faker.datatype.number({min:1200, max: 1500}),
+            assigned:faker.datatype.number({min:1000, max: 1200}),
         },
         protection:{
             inUse: {
-                internal: faker.datatype.number({ min:100, max: 150 }),
-                external: faker.datatype.number({ min:100, max: 140 }),
+                internal: faker.datatype.number({ min:10, max: 50 }),
+                external: faker.datatype.number({ min:10, max: 100 }),
             },
             assigned:faker.datatype.number({min:300, max: 900 }),
         },
@@ -32,5 +32,13 @@ export const createOrganization = (): OrganizationType=>{
  * @return {OrganizationType[]}
  */
 export const createOrganizationList = ():OrganizationType[]=> {
+    return faker.datatype.string().split('').map(_=>createOrganization());
+}
+
+/**
+ * @description Searchs organizations with the given search name
+ * @return {OrganizationType[]}
+ */
+export const searchOrganization = (name: string):OrganizationType[]=> {
     return faker.datatype.string().split('').map(_=>createOrganization());
 }

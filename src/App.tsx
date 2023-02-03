@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardsContext } from './context/CardsContext';
+import { OrganizationsContextProvider } from './store/OrganizationContext';
 import { OrganizationsList } from './components/organisms/OrganizationsList';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './styles/global.scss';
@@ -28,9 +28,9 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <CardsContext.Provider value={{}}>
+      <OrganizationsContextProvider>
         <OrganizationsList />
-      </CardsContext.Provider>
+      </OrganizationsContextProvider>
     </ThemeProvider>
   );
 }

@@ -1,18 +1,28 @@
+import {memo, useContext} from 'react';
 import { Typography, Divider, Box, Grid } from "@mui/material"
 import { SearchBar, Button } from '../atoms'
+import { OrganizationsContext } from "../../store/OrganizationContext/context";
+import { addOrganization, searchOrganization, clearSearch } from "../../store/OrganizationContext/reducer";
+import { createOrganization } from '../../utils/api';
 
-type BlockHeaderProps = {
+export const OrganizationListHeaderComponent = ()=>{
+    const { state, dispatch } = useContext(OrganizationsContext);
+    const amountOfOrganizations = state.list.length;
 
-}
-
-export const OrganizationListHeader = ({}:BlockHeaderProps)=>{
+    const handleAddOrganization = async()=>{
+        const org = createOrganization();
+        dispatch(addOrganization(org));
+    }
+    const handleSearchOrganization = (name:string):void=>{
+        dispatch(name === '' ? clearSearch(): searchOrganization(name));
+    }
     return(
         <Box className="organizationListHeader">
             <Grid container alignItems="center">
-                <Grid item paddingRight="20px"><Typography variant="h6" className="organizationListHeaderTitle">All organizations (15)</Typography></Grid>
+                <Grid item paddingRight="20px"><Typography variant="h6" className="organizationListHeaderTitle">All organizations ({amountOfOrganizations})</Typography></Grid>
                 <Grid item>
                     <SearchBar 
-                        handleSearchClick={()=> console.log('search clicked')} 
+                        onSearch={handleSearchOrganization} 
                         label="Search organization"
                     />
                 </Grid>
@@ -20,7 +30,7 @@ export const OrganizationListHeader = ({}:BlockHeaderProps)=>{
                 <Grid item sx={{"marginLeft": "auto"}}>
                     <Button 
                         variant="contained"
-                        onClick={()=>console.log('click')}
+                        onClick={()=>handleAddOrganization()}
                         className="addNewOrgButton"
                     >Add New Organization</Button>
                 </Grid>
@@ -29,3 +39,5 @@ export const OrganizationListHeader = ({}:BlockHeaderProps)=>{
         </Box>
     )
 }
+
+export const OrganizationListHeader = memo(OrganizationListHeaderComponent);

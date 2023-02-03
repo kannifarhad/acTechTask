@@ -1,3 +1,4 @@
+import {memo} from 'react';
 import { Box, Grid } from "@mui/material"
 import {OrganizationCard} from './OrganizationCard'
 import { OrganizationType } from '../../types';
@@ -12,8 +13,13 @@ export const OrganizationList = ({ itemsList }:OrganizationListProps)=>{
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                 {itemsList.map(item=><Grid key={item.id} item xs={12} sm={4} md={4} ><OrganizationCard item={item} /> </Grid> )}
             </Grid>
+           <OrganizationListPagination />
+        </Box>
+    )
+}
 
-            <Grid
+const OrganizationListPagination = memo(()=>{
+    return  <Grid
                 container
                 direction="row"
                 justifyContent="center"
@@ -29,6 +35,4 @@ export const OrganizationList = ({ itemsList }:OrganizationListProps)=>{
                     </Button>
                 </Grid>
             </Grid>
-        </Box>
-    )
-}
+})
