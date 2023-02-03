@@ -1,0 +1,64 @@
+@import '../../styles/theme.scss';
+
+.organizationListHeader{
+    .organizationListHeaderTitle{
+        font-weight: 800;
+        margin-right: 40px;
+    }
+}
+.pagination {
+    padding: 50px 0px 10px 0px;
+}
+.organizationCard {
+    
+    .organizationCardHead{
+        padding: 10px 15px;
+        .organizationName {
+            font-size: 1rem;
+            line-height: 1em;
+            font-weight: 800;
+        }
+    }
+ 
+    .organizationCardContent {
+        padding: 10px 16px 10px 16px !important;
+
+        .contentTitle{
+            font-weight: 600;
+            // color:$lightIconColor;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        .contentSubTitle{
+            font-weight: 600;
+            font-size: 0.75rem;
+            color:$lightIconColor
+        }
+        ul.cardContentList{
+            li {
+                padding: 0px;
+                display: flex;
+                .listTitle{
+                    font-size: 0.75rem;
+                    font-weight: 500;
+                    color:$lightIconColor;
+                    min-width: 75px;
+                }
+                .listAction {
+                    width: 50px;
+                    p, input{
+                        font-size: 0.75rem;
+                        font-weight: 500;
+                    }
+                    .green {
+                        color:$successColor
+                    }
+                    .red {
+                        color:$errorColor
+                    }
+                }
+            }
+        }
+    }
+
+}

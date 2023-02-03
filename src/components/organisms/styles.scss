@@ -1,0 +1,12 @@
+@import '../../styles/theme.scss';
+
+.organizationWrap {
+    background-color: $backgroundLightColor;
+    display: flex;
+    justify-content: center;
+}
+
+.organizationContainer {
+    padding: 1rem;
+    max-width: 1200px;
+}

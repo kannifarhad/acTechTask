@@ -1,0 +1,57 @@
+@import '../../styles/theme.scss';
+
+@mixin buttonStyles {
+    text-transform: none !important;
+    padding: 0.5rem 1.6rem !important;
+    font-size: 0.75rem !important;
+}
+.customBtn{
+    @include buttonStyles;
+    background-color: $primaryBtnBgColor !important;
+}
+.verticonMenu {
+    .vmenuButton {
+        color:$lightIconColor;
+        margin-top:4px
+    }
+}
+.searchBar {
+    label{
+        font-size: 0.8rem;
+    }
+    input {
+        font-size: 0.8rem;
+    }
+    button {
+        svg {
+            color:$lightIconColor;
+        }
+    }
+    &:hover{
+        fieldset{
+            border-color: $borderColor;
+        }
+    }
+    fieldset {
+        border-color: $borderColor;
+    }
+}
+
+.vmenuList{
+    ul { 
+        padding: 0;
+        li { 
+            .vmenuName span{
+                font-size: 0.8rem;
+                color:$secondaryFontColor
+            }
+            .vmenuIcon {
+                min-width: 1.5em;
+                svg {
+                    color:$lightIconColor;
+                    font-size: 0.9rem
+                }
+            }
+        }
+    }
+}

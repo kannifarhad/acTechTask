@@ -1,25 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { CardsContext } from './context/CardsContext';
+import { OrganizationsList } from './components/organisms/OrganizationsList';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import './styles/global.scss';
+
+const theme = createTheme({
+  typography: {
+    allVariants: {
+      fontFamily: 'Montserrat',
+      textTransform: 'none'
+    },
+  },
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'contained' },
+          style: {
+            textTransform: 'none',
+          },
+        },              
+      ],
+    },
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CardsContext.Provider value={{}}>
+        <OrganizationsList />
+      </CardsContext.Provider>
+    </ThemeProvider>
   );
 }
 
